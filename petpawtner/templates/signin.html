@@ -76,6 +76,13 @@
 
 <div class="login-container">
     <h1>Sign In</h1>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p style="color: red;">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
     <form method="POST" action="{% url 'signin' %}">
         {% csrf_token %}
         <input type="text" name="username" placeholder="Username" required>
