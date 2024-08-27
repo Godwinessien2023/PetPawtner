@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,11 +50,11 @@
         }
 
         .hero {
-            background-image: url('dog_bg.JPG');
+            background-image: url("{% static 'images/dog_bg.JPG' %}");
             background-size: cover;
             background-position: center;
             text-align: center;
-            padding: 100px 20px;
+            padding: 100px;
         }
 
         .hero h2 {
@@ -114,12 +116,12 @@
     <p>Where your pets meet new friends!</p>
 </header>
 
-<nav>
+<!-- <nav>
     <a href="#">Profile</a>
     <a href="#">Pets near you</a>
     <a href="#">Vets near you</a>
     <a href="#">Notification</a>
-</nav>
+</nav> -->
 
 <div class="hero">
     <h2>Welcome to PetPawtner</h2>
