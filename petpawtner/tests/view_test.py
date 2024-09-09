@@ -3,11 +3,10 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 
-"""
-create IndexViewTests class to test the index view
-"""
 class IndexViewTests(TestCase):
     """
+    create IndexViewTests class to test the index view
+
     setUp method to create a test client and a test user
     Test if the index view requires login:
     Test to ensure that unauthenticated users are redirected to the login page:
@@ -35,22 +34,23 @@ class IndexViewTests(TestCase):
         self.assertEqual(response.context['profile'], self.user.profile)
 
 
-"""
-create SignupViewTests class to test the signup view
-Test if the signup page renders correctly:
 
-Ensure that the signup page is accessible.
-Test successful signup:
-
-Ensure a new user can sign up successfully and is redirected to the settings page.
-Test signup with already taken username or email:
-
-Ensure proper error messages are displayed when the username or email is already taken.
-Test signup with non-matching passwords:
-
-Ensure an error message is displayed if passwords do not match
-"""
 class SignupViewTests(TestCase):
+    """
+    create SignupViewTests class to test the signup view
+    Test if the signup page renders correctly:
+
+    Ensure that the signup page is accessible.
+    Test successful signup:
+
+    Ensure a new user can sign up successfully and is redirected to the settings page.
+    Test signup with already taken username or email:
+
+    Ensure proper error messages are displayed when the username or email is already taken.
+    Test signup with non-matching passwords:
+
+    Ensure an error message is displayed if passwords do not match
+    """
     def setUp(self):
         self.client = Client()
 
@@ -88,19 +88,20 @@ class SignupViewTests(TestCase):
         })
         self.assertContains(response, 'Passwords do not match')
 
-"""
-create SettingsViewTests class to test the settings view
-Test if the settings view requires login:
 
-Ensure that unauthenticated users are redirected to the login page.
-Test settings form submission for vets:
-
-Ensure that when the user selects the vet role, their profile is updated accordingly, and they are redirected to the index page.
-Test settings form submission for pet owners:
-
-Ensure that when the user selects the pet owner role, they are redirected to the add_pets page.
-"""
 class SettingsViewTests(TestCase):
+    """
+    create SettingsViewTests class to test the settings view
+    Test if the settings view requires login:
+
+    Ensure that unauthenticated users are redirected to the login page.
+    Test settings form submission for vets:
+
+    Ensure that when the user selects the vet role, their profile is updated accordingly, and they are redirected to the index page.
+    Test settings form submission for pet owners:
+
+    Ensure that when the user selects the pet owner role, they are redirected to the add_pets page.
+    """
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create_user(username='testuser', password='12345')
@@ -138,19 +139,20 @@ class SettingsViewTests(TestCase):
         self.assertRedirects(response, reverse('add_pets'))
 
 
-"""
-create AddPetsViewTests class to test the add_pets view
-Test if the add_pets view requires login:
 
-Ensure that unauthenticated users are redirected to the login page.
-Test adding a pet:
-
-Ensure that a pet owner can add a new pet, and the pet is saved in the database.
-Test adding a pet with missing fields:
-
-Ensure that an error message is displayed if any of the required fields are missing.
-"""
 class AddPetsViewTests(TestCase):
+    """
+    create AddPetsViewTests class to test the add_pets view
+    Test if the add_pets view requires login:
+
+    Ensure that unauthenticated users are redirected to the login page.
+    Test adding a pet:
+
+    Ensure that a pet owner can add a new pet, and the pet is saved in the database.
+    Test adding a pet with missing fields:
+
+    Ensure that an error message is displayed if any of the required fields are missing.
+    """
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create_user(username='testuser', password='12345')
@@ -202,7 +204,8 @@ class AddPetsViewTests(TestCase):
     
     def test_adding_a_pet_with_invalid_name(self):
         self.client.login(username='testuser', password='12345')
-        response = self.client.post(reverse('add_pets'), {
+        response = self.client.post(reverse('add_pets'),
+                                    {
             'name': 'Invalid name',
             'breed': 'Golden Retriever',
             'age': '2 years',
@@ -231,19 +234,20 @@ class AddPetsViewTests(TestCase):
         })
         self.assertContains(response, 'Invalid owner')
 
-"""
-add SigninViewTests class to test the signin view
-Test if the signin page renders correctly:
 
-Ensure that the signin page is accessible.
-Test successful signin:
-
-Ensure a user can sign in successfully and is redirected to the index page.
-Test signin with incorrect credentials:
-
-Ensure proper error messages are displayed when the user enters incorrect credentials.
-"""
 class SigninViewTests(TestCase):
+    """
+    add SigninViewTests class to test the signin view
+    Test if the signin page renders correctly:
+
+    Ensure that the signin page is accessible.
+    Test successful signin:
+
+    Ensure a user can sign in successfully and is redirected to the index page.
+    Test signin with incorrect credentials:
+
+    Ensure proper error messages are displayed when the user enters incorrect credentials.
+    """
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create_user(username='testuser', password='12345')
@@ -287,19 +291,33 @@ class SigninViewTests(TestCase):
         response = self.client.get(reverse('index'))
         self.assertRedirects(response, reverse('signin'))
     
-"""
-define signout view tests class to test the signout view
-Test if the signout view requires login:
+    def test_signout_view_redirects_if_not_logged_in(self):
+        response = self.client.get(reverse('signout'))
+        self.assertRedirects(response, '/signin?next=/signout')
+        response = self.client.get(reverse('index'))
+        self.assertRedirects(response, '/signin?next=/')
 
-Ensure that unauthenticated users are redirected to the login page.
-Test successful signout:
+    def test_signout_view_loads_for_logged_in_user(self):
+        self.client.login(username='testuser', password='00000')
+        response = self.client.get(reverse('signout'))
+        self.assertRedirects(response, reverse('signin'))
+        response = self.client.get(reverse('index'))
+        self.assertRedirects(response, reverse('signin'))
 
-Ensure a user can sign out successfully and is redirected to the signin page.
-Test signout with invalid credentials:
 
-Ensure proper error messages are displayed when the user enters incorrect credentials.
-"""
 class SignoutViewTests(TestCase):
+    """
+    define signout view tests class to test the signout view
+    Test if the signout view requires login:
+
+    Ensure that unauthenticated users are redirected to the login page.
+    Test successful signout:
+
+    Ensure a user can sign out successfully and is redirected to the signin page.
+    Test signout with invalid credentials:
+
+    Ensure proper error messages are displayed when the user enters incorrect credentials.
+    """
     def setUp(self):
         self.client = Client()
         self.user = User.objects.create_user(username='testuser', password='12345')

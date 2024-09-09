@@ -5,18 +5,18 @@ from django.contrib.auth.models import User
 #set a variable so User = get_user_model
 User = get_user_model()
 
-"""Create a profile class to inherit from the model.Model class
-automatically created by Django as default user
-and link the user using a FK
-"""
+
 class Profile(models.Model):
+    """Create a profile class to inherit from the model.Model class
+    automatically created by Django as default user
+    and link the user using a FK
+    """
     USER_ROLES = (
         ('owner', 'Pet Owner'),
         ('vet', 'Vet'),
     )
     
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    id_user = models.IntegerField()
     bio = models.TextField(blank=True)
     profileimg = models.ImageField(upload_to='profile_image', default='dog_paw-pp.png')
     location = models.CharField(max_length=50)
@@ -25,11 +25,12 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
     
-"""
-Create a pet class to inherit from the model.Model class
-and link the pet to the owner using a FK
-"""
+
 class Pet(models.Model):
+    """
+    Create a pet class to inherit from the model.Model class
+    and link the pet to the owner using a FK
+    """
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='pets')
     name = models.CharField(max_length=100)
     breed = models.CharField(max_length=100)
@@ -41,11 +42,12 @@ class Pet(models.Model):
     def __str__(self):
         return f"{self.name} ({self.breed}) - {self.owner.user.username}"
     
-"""
-Create a vet class to inherit from the model.Model class
-and link the vet to the profile using a OneToOneField
-"""
+
 class Vet(models.Model):
+    """
+    Create a vet class to inherit from the model.Model class
+    and link the vet to the profile using a OneToOneField
+    """
     profile = models.OneToOneField(Profile, on_delete=models.CASCADE, related_name='vet_profile')
     clinic_name = models.CharField(max_length=100)
     specialty = models.CharField(max_length=100)
@@ -56,4 +58,3 @@ class Vet(models.Model):
 
     def __str__(self):
         return f"Dr. {self.profile.user.username} - {self.specialty}"
-
