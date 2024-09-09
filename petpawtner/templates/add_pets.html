@@ -61,30 +61,34 @@
 <body>
     <div class="container">
         <h2>Add Your Pet</h2>
-        <form method="POST" action="{% url 'add_pets' %}" enctype="multipart/form-data">
+        <form method="POST" enctype="multipart/form-data" action="{% url 'add_pets' %}">
             {% csrf_token %}
             <div class="form-group">
-                <label for="pet_name">Pet Name:</label>
-                <input type="text" name="pet_name" id="pet_name" placeholder="Enter your pet's name" required>
+                <label for="name">Pet Name:</label>
+                <input type="text" name="name" id="name" required>
             </div>
             <div class="form-group">
-                <label for="breed">Breed:</label>
-                <input type="text" name="breed" id="breed" placeholder="Enter your pet's breed" required>
+                <label for="breed">Pet Breed:</label>
+                <input type="text" name="breed" id="breed" required>
             </div>
             <div class="form-group">
-                <label for="age">Age:</label>
-                <input type="number" name="age" id="age" placeholder="Enter your pet's age in years" required>
+                <label for="age">Pet Age:</label>
+                <input type="text" name="age" id="age" required>
             </div>
             <div class="form-group">
-                <label for="description">Description:</label>
-                <textarea name="description" id="description" placeholder="Describe your pet (e.g., temperament, favorite activities)" required></textarea>
+                <label for="bio">Bio:</label>
+                <textarea name="bio" id="bio"></textarea>
             </div>
             <div class="form-group">
-                <label for="pet_image">Upload Pet Image:</label>
-                <input type="file" name="pet_image" id="pet_image" accept="image/*" required>
+                <label for="profileimg">Pet Profile Image:</label>
+                <input type="file" name="profileimg" id="profileimg" accept="image/*">
             </div>
-            <button type="submit" class="btn">Add Pet</button>
-        </form>
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" name="location" id="location" required>
+            </div>
+            <button type="submit">Add Pet</button>
+        </form>       
     </div>
 </body>
 </html>
