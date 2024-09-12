@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Settings - PetPawtner</title>
+      <link rel="stylesheet" href="color.css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=SUSE:wght@100..800&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap" rel="stylesheet">
+      <!-- Google Icon -->
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.1/animate.min.css" integrity="sha512-E5hbw9GiuYofTcrbba1gAU64dn/54A9nmk4IEMzmp+YmiLc0WnRLOfzofb/r6spu5CVilyob07HWGhXq7Ht7dQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+   </head>
+   <body>
+      <header>
+         <section class="colored-section">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+               <div class="container-fluid">
+                  <a class="navbar-brand" href="#">
+                  <img src="PetPawtner.png" alt="Logo" width="120px" height="48px">
+                  </a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarNav">
+                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                           <a class="nav-link" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link" href="#abt">About us</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link" href="color.html/#team">Our Team</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link" href="#">Contact us</a>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </nav>
+         </section>
+         <div class="container role-form-section">
+            <h2 class="title">Complete Your Profile</h2>
+            <form method="POST" action="{% url 'settings' %}">
+               {% csrf_token %}
+               <div class="form-group">
+                  <div class="mb-3">
+                     <label for="role">I am a:</label>
+                     <select class="form-select" name="role" id="role" required>
+                        <option value="owner">Pet Owner</option>
+                        <option value="vet">Veterinarian</option>
+                     </select>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="mb-3">
+                     <label for="bio" class="form-label">Bio:</label>
+                     <textarea class="form-control" name="bio" id="bio" placeholder="Tell us about yourself..." rows="3" required></textarea>
+                  </div>
+               </div>
+               <div class="form-group">
+                  <div class="mb-3">
+                     <label for="location" class="form-label">Location:</label>
+                     <input class="form-control" type="text" name="location" id="location" placeholder="Enter your city or state" required>
+                  </div>
+               </div>
+               <!-- Vet-specific fields (will be displayed conditionally with JavaScript) -->
+               <div id="vet-fields" style="display: none;">
+                  <div class="form-group">
+                     <label for="clinic_name" class="form-label">Clinic Name:</label>
+                     <input class="form-control" type="text" name="clinic_name" id="clinic_name" placeholder="Enter your clinic's name">
+                  </div>
+                  <div class="form-group">
+                     <label for="specialty" class="form-label">Specialty:</label>
+                     <input class="form-control" type="text" name="specialty" id="specialty" placeholder="Enter your specialty">
+                  </div>
+                  <div class="form-group">
+                     <label for="years_of_experience" class="form-label">Years of Experience:</label>
+                     <input class="form-control" type="number" name="years_of_experience" id="years_of_experience" placeholder="How many years of experience?">
+                  </div>
+                  <div class="form-group">
+                     <label for="contact_info" class="form-label">Contact Information:</label>
+                     <input class="form-control" type="tel" name="contact_info" id="contact_info" placeholder="Enter your contact info">
+                  </div>
+               </div>
+               <button type="submit" class="btn btn-primary">Save and Continue</button>
+            </form>
+         </div>
+      </header>
+      <section class="footer-section" id="footer">
+         <footer class="copyright">
+            <div class="container-fluid footer-social">
+               <a href=""><i class="bi bi-twitter-x"></i></a>
+               <a href=""><i class="bi bi-facebook"></i></a>
+               <a href=""><i class="bi bi-instagram"></i></a>
+               <a href=""><i class="bi bi-linkedin"></i></a>
+               <a href=""><i class="bi bi-reddit"></i></a>
+            </div>
+            &copy PetPawtner 2024
+         </footer>
+      </section>
+      <script>
+         const roleSelect = document.getElementById('role');
+         const vetFields = document.getElementById('vet-fields');
+         
+         roleSelect.addEventListener('change', function() {
+             if (this.value === 'vet') {
+                 vetFields.style.display = 'block';
+             } else {
+                 vetFields.style.display = 'none';
+             }
+         });
+      </script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+   </body>
+</html>
