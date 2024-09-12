@@ -1,142 +1,250 @@
 {% load static %}
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetPawtner</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f8ff; /* Light blue background */
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #ffb6c1; /* Light pink */
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-        }
-
-        header p {
-            font-size: 1.2rem;
-            margin: 10px 0 0;
-        }
-
-        nav {
-            background-color: #87cefa; /* Light blue */
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-size: 1.1rem;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
-
-        .hero {
-            background-image: url("{% static 'images/dog_bg.JPG' %}");
-            background-size: cover;
-            background-position: center;
-            text-align: center;
-            padding: 100px;
-        }
-
-        .hero h2 {
-            font-size: 2.5rem;
-            margin: 0 0 20px;
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin: 0 0 20px;
-        }
-
-        .hero a {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #ff69b4; /* Pink */
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            border-radius: 5px;
-        }
-
-        .hero a:hover {
-            background-color: #ff1493; /* Deep pink */
-        }
-
-        .content {
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .content h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        .content p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-
-        footer {
-            background-color: #87cefa; /* Light blue */
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-        }
-
-        footer p {
-            margin: 0;
-            font-size: 1rem;
-        }
-    </style>
-</head>
-<body>
-
-<header>
-    <h1>PetPawtner</h1>
-    <p>Where your pets meet new friends!</p>
-</header>
-
-<!-- <nav>
-    <a href="#">Profile</a>
-    <a href="#">Pets near you</a>
-    <a href="#">Vets near you</a>
-    <a href="#">Notification</a>
-</nav> -->
-
-<div class="hero">
-    <h2>Welcome to PetPawtner</h2>
-    <p>Connect your pets with others for friendship, mating, and more!</p>
-    <a href="{% url 'signin' %}">Login</a>   <a href="{% url 'signup' %}">Sign Up</a>    <a href="{% url 'signout' %}">Logout</a>
-</div>
-
-<div class="content">
-    <h2>About Us</h2>
-    <p>PetPawtner is a community where pet owners can connect their beloved dogs and cats with others. Whether you're looking for a mate for your pet, a new friend, or a reliable vet, we've got you covered.</p>
-</div>
-
-<footer>
-    <p>&copy; 2024 PetPawtner. All Rights Reserved.</p>
-</footer>
-
-</body>
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <title>PetPawtner</title>
+      <link rel="stylesheet" href="../static/styles/style.css">
+      <!-- Google fonts -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=SUSE:wght@100..800&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap" rel="stylesheet">
+      <!-- Google Icon -->
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.1/animate.min.css" integrity="sha512-E5hbw9GiuYofTcrbba1gAU64dn/54A9nmk4IEMzmp+YmiLc0WnRLOfzofb/r6spu5CVilyob07HWGhXq7Ht7dQ==" crossorigin="anonymous" referrerpolicy="no-referrer">
+   </head>
+   <body>
+      <header>
+         <div class="colored-section">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+               <div class="container-fluid">
+                  <a class="navbar-brand" href="#">
+                  <img src="../static/images/PetPawtner.png" alt="Logo" width="120" height="48">
+                  </a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarNav">
+                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                           <a class="nav-link" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link" href="#abt">About us</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link" href="#team">Our Team</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link" href="#">Contact us</a>
+                        </li>
+                        <li class="nav-item">
+                           <button class="btn btn-outline-success">Login</button>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </nav>
+         </div>
+         <div id="carouselExampleCaptions" class="carousel slide hero">
+            <div class="carousel-indicators">
+               <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+               <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+               <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+               <div class="carousel-item active">
+                  <img src="../static/images/dog_bg2.jpg" class="d-block w-100" alt="...">
+                  <div class="carousel-caption">
+                     <h2 class="animated bounceInRight" style="animation-delay: 1s">Welcome to PetPawtner, Where your pets meet new friends</h2>
+                     <p class="animated bounceInLeft d-none d-md-block" style="animation-delay: 2s">Connect your pets with others for friendship, mating, and more!.</p>
+                     <p class="animated bounceInRight" style="animation-delay: 3s"><a href="#">Get Started</a></p>
+                  </div>
+               </div>
+               <div class="carousel-item">
+                  <img src="dog_bg4.jpg" class="d-block w-100" alt="...">
+                  <div class="carousel-caption">
+                     <h2 class="animated bounceInRight" style="animation-delay: 1s">Second slide label</h2>
+                     <p class="animated bounceInLeft d-none d-md-block" style="animation-delay: 2s">Connect your pets with others for friendship, mating, and more!.</p>
+                     <p class="animated bounceInRight" style="animation-delay: 3s"><a class="m" href="#">Get Started</a></p>
+                  </div>
+               </div>
+               <div class="carousel-item">
+                  <img src="../static/images/dog_bg.JPG" class="d-block w-100" alt="...">
+                  <div class="carousel-caption">
+                     <h2 class="animated bounceInRight" style="animation-delay: 1s">Partiendo interdum cras ac simul sodales persecuti quot</h2>
+                     <p class="animated bounceInLeft d-none d-md-block" style="animation-delay: 2s">Connect your pets with others for friendship, mating, and more!.</p>
+                     <p class="animated bounceInRight" style="animation-delay: 3s"><a href ="#">Get Start</a></p>
+                  </div>
+               </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+            </button>
+         </div>
+      </header>
+      <div class="content">
+      <h2 id="abt">About Us</h2>
+      <p>PetPawtner is a community where pet owners can connect their beloved dogs with others. Whether you're looking for a mate for your pet, a new friend, or a reliable vet, we've got you covered.</p>
+      <hr>
+      <div class="dog-section">
+         <h2>Dog Facts</h2>
+         <div class="fact-container">
+            <blockquote id="dog-facts">Fetching dog facts...</blockquote>
+         </div>
+      </div>
+      <!-- Team Section -->
+      <section id="team" class="team section">
+         <!-- Section Title -->
+         <div class="container section-title">
+            <h2>Our Team</h2>
+            <div><span>Check Our</span> <span class="description-title">Team</span></div>
+         </div>
+         <!-- End Section Title -->
+         <div class="container">
+            <div class="row gy-5">
+               <div class="col-lg-4 col-md-6">
+                  <div class="member">
+                     <div class="pic"><img src="../static/images/Godwin.jpg" class="img-fluid" alt=""></div>
+                     <div class="member-info">
+                        <h4>Godwin Essien</h4>
+                        <span>Backend engineer</span>
+                        <div class="social">
+                           <a href=""><i class="bi bi-twitter-x"></i></a>
+                           <a href="https://web.facebook.com/EssienGodwinOfficial"><i class="bi bi-facebook"></i></a>
+                           <a href="https://www.linkedin.com/in/godwinessien/"><i class="bi bi-linkedin"></i></a>
+                           <a href="https://GitHub.com/Godwinessien2023"><i class="bi bi-github"></i></a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- End Team Member -->
+               <div class="col-lg-4 col-md-6">
+                  <div class="member">
+                     <div class="pic"><img src="../static/images/stella.png" class="img-fluid" alt=""></div>
+                     <div class="member-info">
+                        <h4>Stella Orji</h4>
+                        <span>Devops</span>
+                        <div class="social">
+                           <a href=""><i class="bi bi-twitter-x"></i></a>
+                           <a href=""><i class="bi bi-facebook"></i></a>
+                           <a href=""><i class="bi bi-linkedin"></i></a>
+                           <a href=""><i class="bi bi-github"></i></a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- End Team Member -->
+               <div class="col-lg-4 col-md-6">
+                  <div class="member">
+                     <div class="pic"><img src="" class="img-fluid" alt=""></div>
+                     <div class="member-info">
+                        <h4>Gideon Oloyede</h4>
+                        <span>CTO</span>
+                        <div class="social">
+                           <a href="https://x.com/AyooluwaOloyede?t=re3ANTm7dProMr5h7mhqZQ&s=09"><i class="bi bi-twitter-x"></i></a>
+                           <a href=""><i class="bi bi-facebook"></i></a>
+                           <a href="https://ng.linkedin.com/in/ayooluwa-gideon-oloyede-a85028290"><i class="bi bi-linkedin"></i></a>
+                           <a href=""><i class="bi bi-github"></i></a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- End Team Member -->
+            </div>
+         </div>
+      </section>
+      <!-- /Team Section -->
+      <div class="features-section">
+         <h2>Why join us?</h2>
+         <div class="card-group">
+            <div class="card">
+               <img src="../static/images/dog_bg4.jpg" class="card-img-top" alt="dog_bg4.jpg">
+               <div class="card-body">
+                  <h5 class="card-title">Networking</h5>
+                  <p class="card-text">Connect with fellow pet owners and find new friends for your pets. Share experiences and bond over your love for animals.</p>
+               </div>
+            </div>
+            <div class="card">
+               <img src="../static/images/vet.jpg" class="card-img-top" alt="...">
+               <div class="card-body">
+                  <h5 class="card-title">Veterinary Care</h5>
+                  <p class="card-text">Access trusted vets in your area and get advice and care tips to ensure your pet stays healthy and happy.</p>
+               </div>
+            </div>
+            <div class="card">
+               <img src="../static/images/matiny.jpg" class="card-img-top" alt="...">
+               <div class="card-body">
+                  <h5 class="card-title">Breeding</h5>
+                  <p class="card-text">Find the perfect mate for your pet through our breeding network, ensuring healthy and well-matched pairings.</p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <section class="row">
+         <div class="sdog col-lg-4 col-md-6">
+            <img src="../static/images/sdog.png" alt="" height="540" width="357">
+         </div>
+         <div class="col-md-6 col-lg-4">
+            <section class="contact-section">
+               <h2>Contact Us</h2>
+               <p>Get in touch with<strong> PetPawtner.</strong></p>
+               <div>
+                  <form action="mailto:ayooluwaoloyede71@gmail.com?cc=godwinessien@gmail.com.com&bcc=stellorgi@gmail.com&subject=In%20need%20of%20help" method="post" enctype="text/plain">
+                     <label for="name" class="form-label">Name:</label>
+                     <input class="form-control"type="text" id="name" name="name" required>
+                     <br>
+                     <label for="email" class="form-label">Email:</label>
+                     <input class="form-control" type="email" id="email" name="email" required>
+                     <br>
+                     <label for="message" class="form-label">Message:</label>
+                     <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                     <br>
+                     <input type="submit" value="Send" class="btn btn-primary">
+                     <input type="reset" value="Reset" class="btn btn-danger">
+                  </form>
+               </div>
+            </section>
+         </div>
+         <div class="col-lg-4">
+            <h2>Get in touch with us</h2>
+            <p>We'd love to hear from you! Whether you have questions, feedback, or just want to say hello, feel free to reach out to us through any of the following methods:</p>
+            <h3>Address:</h3>
+            <address>
+               4A Idowu Taylor Street,<br>
+               Victoria Island
+               <br>
+               lagos
+            </address>
+         </div>
+      </section>
+      <div class="footer-section" id="footer">
+         <footer class="copyright">
+            <div class="container-fluid footer-social">
+               <a href=""><i class="bi bi-twitter-x"></i></a>
+               <a href=""><i class="bi bi-facebook"></i></a>
+               <a href=""><i class="bi bi-instagram"></i></a>
+               <a href=""><i class="bi bi-linkedin"></i></a>
+               <a href=""><i class="bi bi-reddit"></i></a>
+            </div>
+            &copy; PetPawtner 2024
+         </footer>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+      <script src="../static/scripts/script.js"></script>
+   </body>
 </html>
+ 
