@@ -15,7 +15,7 @@ Installation
 To get started with Petpawtner locally, follow these steps:
 
 Clone the repository:
-git clone https://github.com/yourusername/petpawtner.git
+git clone https://github.com/Godwinessien2023/PetPawtner/
 
 Navigate to the project directory:
 cd petpawtner
