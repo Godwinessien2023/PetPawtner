@@ -3,13 +3,14 @@ Petpawtner
 Introduction
 Petpawtner is a mini social media web app designed for pet owners and vets to connect and share information. Pet owners can showcase their pets, find potential partners for breeding, and connect with local vets for healthcare services. Vets can use the platform to offer their services, share updates, and engage with pet owners.
 
-Deployed Site: Petpawtner
-Final Project Blog Article: To be updated
-Author(s):
+Deployed Site: Petpawtner.com
 
-Godwin's To be updated
-Gideon's To be updated
-Stella's To be updated
+Final Project Blog Article: To be updated
+
+Author(s):
+Godwin
+Gideon
+Stella
 
 Installation
 To get started with Petpawtner locally, follow these steps:
@@ -29,6 +30,7 @@ pip install -r requirements.txt
 
 Set up the database:
 python manage.py migrate
+
 Create a superuser to access the admin panel:
 python manage.py createsuperuser
 
@@ -36,6 +38,7 @@ Run the development server:
 python manage.py runserver
 
 Usage
+
 Sign up as a pet owner or vet.
 Pet owners can add their pets, make posts, and search for other pets by breed or name.
 Vets can manage their profiles, share updates, and connect with pet owners.
